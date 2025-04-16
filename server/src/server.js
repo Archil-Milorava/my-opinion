@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/errorMiddleware.js";
 import userRoutes from "./routes/user/user.routes.js";
 import blogRoutes from "./routes/blogs/blog.routes.js";
+import { NOT_FOUND } from "./constants/http.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, "/../client/dist")));
 app.use("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/../client/dist/index.html"))
 );
+
 
 app.use(errorHandler);
 
