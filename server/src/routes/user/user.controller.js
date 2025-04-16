@@ -102,9 +102,7 @@ export const getCurrentUser = async (req, res, next) => {
   try {
     const currentUser = req.user;
 
-    res.status(OK).json({
-      currentUser,
-    });
+    res.status(OK).json(currentUser);
   } catch (error) {
     next(error);
   }

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SpinnerMini from "@/components/ui/SpinnerMini";
 import { useSignIn } from "@/hooks/authHook";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -50,8 +51,8 @@ const Login = () => {
 
         {isError && <p className="text-xs text-red-700">{error?.message}</p>}
 
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Loading" : "Log in"}
+        <Button type="submit" size={"sm"} disabled={isPending}>
+          {isPending ? <SpinnerMini /> : "sign in"}
         </Button>
         <Link to={"/signup"} className="text-sm underline ">
           dont have an Account?

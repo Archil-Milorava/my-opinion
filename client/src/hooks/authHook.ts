@@ -1,7 +1,7 @@
 import {
+  handleCurrentUser,
   handleSignIn,
   handleSignUp,
-  handleCurrentUser,
 } from "@/services/apiAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -46,15 +46,11 @@ export const useSignIn = () => {
 };
 
 export const useCurrentUser = () => {
-  const {
-    data: currentUser,
-    error,
-    isError,
-    isLoading,
-  } = useQuery({
+  const { data: currentUser, ...rest } = useQuery({
     queryKey: ["currentUser"],
     queryFn: handleCurrentUser,
+    staleTime: Infinity,
   });
 
-  return { currentUser, error, isError, isLoading };
+  return { currentUser, ...rest };
 };

@@ -1,12 +1,11 @@
-import express from "express";
-import "dotenv/config";
-import cors from "cors";
-import path from "path";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import "dotenv/config";
+import express from "express";
+import path from "path";
 import errorHandler from "./middleware/errorMiddleware.js";
-import userRoutes from "./routes/user/user.routes.js";
 import blogRoutes from "./routes/blogs/blog.routes.js";
-import { NOT_FOUND } from "./constants/http.js";
+import userRoutes from "./routes/user/user.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
