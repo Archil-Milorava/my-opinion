@@ -21,12 +21,12 @@ model User {
 }
 
 model Blog {
-  id         Int       @id @default(autoincrement())
-  title      String
-  content    String
-  tags       String[]
-  createdAt  DateTime  @default(now())
-
+  id           Int       @id @default(autoincrement())
+  title        String
+  content      String
+  profileImage String?
+  tags         String[]
+  createdAt    DateTime  @default(now())
   author     User      @relation("UserBlogs", fields: [authorId], references: [id])
   authorId   String
 }

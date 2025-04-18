@@ -1,11 +1,18 @@
+import Spinner from "@/components/ui/Spinner";
 import BlogCard from "@/features/blog/BlogCard";
-import mockdata from "./MockData.json";
+import { useGetBlogs } from "@/hooks/blogHook";
 
 const Landing = () => {
+  const { blogs, isLoading, error } = useGetBlogs();
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="w-full flex-1 flex flex-col items-center justify-center gap-4 py-4 bg-gray-800">
-      {mockdata.map((blog) => (
-        <BlogCard key={blog.title} {...blog} />
+      {error && <div>error</div>}
+      {blogs?.map((blog) => (
+        <BlogCard key={blog.id} {...blog} />
       ))}
     </section>
   );
