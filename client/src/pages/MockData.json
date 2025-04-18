@@ -1,0 +1,33 @@
+[
+    {
+      "title": "The Future of JavaScript: What to Expect in 2025",
+      "content": "JavaScript continues to evolve with exciting features like Temporal, type annotations, and better async handling. In this post, we explore what the future of the language may look like, and how developers can start preparing now.",
+      "published": "2025-03-01",
+      "image": "https://images.unsplash.com/photo-1744125275850-822335d2f621?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "title": "Mastering Tailwind CSS: Tips & Tricks from the Pros",
+      "content": "Tailwind CSS has become the go-to utility-first framework for many developers. Learn how to write cleaner, more maintainable styles and build stunning UIs with these expert-approved techniques.",
+      "published": "2025-03-15",
+      "image": "https://images.unsplash.com/photo-1743963256372-345f0c6dc098?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "title": "React Server Components: The Next Big Thing?",
+      "content": "Server Components are changing the way we build apps in React. Find out what they are, how they work, and whether you should start using them in your next project.",
+      "published": "2025-02-22",
+      "image": "https://images.unsplash.com/photo-1744198275588-06648407b39a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "title": "Top 10 VS Code Extensions Every Web Dev Should Use",
+      "content": "From productivity boosters to code formatters, these VS Code extensions can transform your workflow. We've ranked the top 10 must-haves for web developers in 2025.",
+      "published": "2025-04-10",
+      "image": "https://plus.unsplash.com/premium_photo-1673052882181-1080542b2e02?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "title": "Dark Mode Everything: Why Users Love It (and You Should Too)",
+      "content": "Dark mode isn’t just a trend — it's become an expected feature. Learn the science behind it, how it impacts UX, and how to implement it properly in your web app.",
+      "published": "2025-01-18",
+      "image": "https://images.unsplash.com/photo-1744567066798-e50a9a043f07?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]
+  

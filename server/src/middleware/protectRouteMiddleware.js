@@ -13,6 +13,10 @@ export const protectRoute = async (req, res, next) => {
 
     const decoded = jwt.verify(accessToken, process.env.JTW_SECRET);
 
+    if (!decoded) {
+      throw new appError("Can not access the page", BAD_REQUEST);
+    }
+
     const currentUser = await prisma.user.findUnique({
       where: { id: decoded.userId },
       select: {
