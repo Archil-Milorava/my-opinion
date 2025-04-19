@@ -2,10 +2,11 @@ import { TwitterShareButton, XIcon } from "react-share";
 
 interface BlogShareProps {
   title: string;
+  blogId: number
 }
 
-const BlogShare = ({ title }: BlogShareProps) => {
-  const shareUrl = window.location.href;
+const BlogShare = ({ title, blogId }: BlogShareProps) => {
+  const shareUrl = `${window.location.origin}/api/v1/blog/share/${blogId}`;
 
   return (
     <div className="flex gap-4 items-center justify-end mt-16">

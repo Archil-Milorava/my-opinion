@@ -17,7 +17,7 @@ const BlogPage = () => {
     return <ErrorPage errorMessage={error?.message || "Blog not found"} />;
   }
 
-  const { title, content, createdAt, profileImage } = blog || {};
+  const { title, content, createdAt, profileImage, id:blogId } = blog || {};
 
   return (
     <>
@@ -47,7 +47,7 @@ const BlogPage = () => {
         <div>
           <p className="sm:text-2xl/relaxed text-xl/relaxed">{content}</p>
         </div>
-        <BlogShare title={title} />
+        <BlogShare title={title} blogId={blogId}  />
       </section>
     </>
   );
