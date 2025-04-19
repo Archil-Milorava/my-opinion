@@ -5,7 +5,7 @@ import {
 } from "@/services/apiAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -16,9 +16,7 @@ export const useSignUp = () => {
     isError,
   } = useMutation({
     mutationFn: handleSignUp,
-    onSuccess: (data) => {
-      console.log(data);
-
+    onSuccess: () => {
       toast.success("account created successfully");
       navigate("/login");
     },
@@ -29,6 +27,9 @@ export const useSignUp = () => {
 
 export const useSignIn = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+  const state = location.state 
+
   const {
     mutate: signIn,
     error,
@@ -38,7 +39,7 @@ export const useSignIn = () => {
     mutationFn: handleSignIn,
     onSuccess: () => {
       toast.success("welcome");
-      navigate("/");
+      navigate(state?.redirect || "/");
     },
   });
 
