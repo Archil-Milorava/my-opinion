@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <>
-      <HelmetProvider>
+     
         <ScrollToTop />
         <Routes>
           <Route element={<PageLayout />}>
@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </HelmetProvider>
+      
     </>
   );
 };

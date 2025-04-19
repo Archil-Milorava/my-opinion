@@ -1,8 +1,13 @@
-import { TwitterShareButton, XIcon } from "react-share";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterShareButton,
+  XIcon,
+} from "react-share";
 
 interface BlogShareProps {
   title: string;
-  blogId: number
+  blogId: number;
 }
 
 const BlogShare = ({ title, blogId }: BlogShareProps) => {
@@ -13,6 +18,9 @@ const BlogShare = ({ title, blogId }: BlogShareProps) => {
       <TwitterShareButton url={shareUrl} title={title}>
         <XIcon size={32} round />
       </TwitterShareButton>
+      <FacebookShareButton url={shareUrl} title={title}>
+        <FacebookIcon size={32} round />
+      </FacebookShareButton>
     </div>
   );
 };
