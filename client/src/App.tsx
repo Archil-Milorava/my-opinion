@@ -1,4 +1,3 @@
-import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 import PageLayout from "./layout/PageLayout";
 import AppContainer from "./pages/AppContainer";
