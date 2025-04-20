@@ -3,6 +3,7 @@ import BlogShare from "@/features/blog/BlogShare";
 import { useSingleBlog } from "@/hooks/blogHook";
 import { useParams } from "react-router-dom";
 import ErrorPage from "./Error";
+import MetaTags from "@/config/MetaTags";
 
 const BlogPage = () => {
   const { id } = useParams();
@@ -16,11 +17,17 @@ const BlogPage = () => {
     return <ErrorPage errorMessage={error?.message || "Blog not found"} />;
   }
 
-  const { title, content, createdAt, profileImage, id:blogId } = blog || {};
+  const { title, content, createdAt, profileImage, id: blogId } = blog || {};
 
   return (
     <>
-    
+      <MetaTags
+        description={content.substring(0, 120)}
+        image={profileImage}
+        title={title}
+        url={window.location.href}
+        key={blogId}
+      />
 
       <section className="w-full flex-1 flex flex-col gap-4 bg-gray-800 text-white py-8  px-4 md:px-[10rem]">
         <div>
@@ -41,7 +48,7 @@ const BlogPage = () => {
         <div>
           <p className="sm:text-2xl/relaxed text-xl/relaxed">{content}</p>
         </div>
-        <BlogShare title={title} blogId={blogId}  />
+        <BlogShare title={title} blogId={blogId} />
       </section>
     </>
   );

@@ -15,7 +15,7 @@ const BlogShare = ({ title, blogId }: BlogShareProps) => {
 
   return (
     <div className="flex gap-4 items-center justify-end mt-16">
-      <TwitterShareButton url={shareUrl} title={title}>
+      <TwitterShareButton url={shareUrl}  title={title}>
         <XIcon size={32} round />
       </TwitterShareButton>
       <FacebookShareButton url={shareUrl} title={title}>
