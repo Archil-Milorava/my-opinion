@@ -48,7 +48,7 @@ const BlogPage = () => {
         <div>
           <p className="sm:text-2xl/relaxed text-xl/relaxed">{content}</p>
         </div>
-        <BlogShare title={title} blogId={blogId} />
+        <BlogShare title={title}  />
       </section>
     </>
   );
