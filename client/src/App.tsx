@@ -1,3 +1,4 @@
+import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 import PageLayout from "./layout/PageLayout";
 import AppContainer from "./pages/AppContainer";
@@ -16,20 +17,22 @@ const Bla = () => {
 const App = () => {
   return (
     <>
-      <ScrollToTop />
-      <Routes>
-        <Route element={<PageLayout />}>
-          <Route path="/" element={<Landing />} />
-          <Route path="/blog/:id" element={<BlogPage />} />
-          <Route element={<AppContainer />}>
-            <Route path="/ragaca" element={<Ragaca />} />
+      <HelmetProvider>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<PageLayout />}>
+            <Route path="/" element={<Landing />} />
+            <Route path="/blog/:id" element={<BlogPage />} />
+            <Route element={<AppContainer />}>
+              <Route path="/ragaca" element={<Ragaca />} />
+            </Route>
+            <Route path="/bla" element={<Bla />} />
           </Route>
-          <Route path="/bla" element={<Bla />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </HelmetProvider>
     </>
   );
 };
