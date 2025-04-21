@@ -50,13 +50,6 @@ export const getBlogs = async (req, res, next) => {
 
 export const getBlog = async (req, res, next) => {
   const { blogId } = req.params;
-  const userAgent = req.get("User-Agent") || "";
-  const isBot =
-    /bot|crawl|slurp|facebook|twitter|discord|whatsapp|preview/i.test(
-      userAgent
-    );
-
-  const url = `https://my-opinion-a8ly.onrender.com/blog/${id}`;
 
   try {
     const blog = await prisma.blog.findUnique({
@@ -70,38 +63,7 @@ export const getBlog = async (req, res, next) => {
       });
     }
 
-    const html = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>${blog.title}</title>
-      <meta property="og:title" content="${blog.title}" />
-      <meta property="og:description" content="${blog.content.slice(0, 150)}..." />
-      <meta property="og:image" content="${blog.profileImage}" />
-      <meta property="og:url" content="${url}" />
-      
-        {/* twittr */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="${url}" />
-        <meta property="twitter:site" content="${url}" />
-        <meta property="twitter:title" content="${blog.title}" />
-        <meta property="twitter:description" content="${blog.content.slice(0, 150)}..." />
-        <meta property="twitter:image" content="${blog.profileImage}" />
-
-
-    </head>
-    <body>
-      <p>Redirecting...</p>
-      <script>window.location.href = "https://my-opinion-a8ly.onrender.com/blog/${blogId}";</script>
-    </body>
-    </html>
-  `;
-
-    if (!isBot) {
-      return res.status(OK).send(html);
-    }
+    
 
     res.status(OK).json({
       success: true,

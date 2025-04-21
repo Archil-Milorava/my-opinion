@@ -1,4 +1,3 @@
-import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 import PageLayout from "./layout/PageLayout";
 import AppContainer from "./pages/AppContainer";
@@ -9,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Ragaca from "./pages/Ragaca";
 import SignUp from "./pages/SignUp";
 import ScrollToTop from "./utils/ScrollToTop";
+import { Helmet } from "react-helmet-async";
 
 const Bla = () => {
   return <div>bajdbasjd</div>;
@@ -17,23 +17,23 @@ const Bla = () => {
 const App = () => {
   return (
     <>
-      <HelmetProvider>
-        <ScrollToTop />
-        
-        <Routes>
-          <Route element={<PageLayout />}>
-            <Route path="/" element={<Landing />} />
-            <Route path="/blog/:id" element={<BlogPage />} />
-            <Route element={<AppContainer />}>
-              <Route path="/ragaca" element={<Ragaca />} />
-            </Route>
-            <Route path="/bla" element={<Bla />} />
+    <Helmet>
+      <title>archil m</title>
+    </Helmet>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<PageLayout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/blog/:id" element={<BlogPage />} />
+          <Route element={<AppContainer />}>
+            <Route path="/ragaca" element={<Ragaca />} />
           </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </HelmetProvider>
+          <Route path="/bla" element={<Bla />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 };
