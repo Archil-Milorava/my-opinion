@@ -49,14 +49,16 @@ export const getBlogs = async (req, res, next) => {
 };
 
 export const getBlog = async (req, res, next) => {
+  const { blogId } = req.params;
   const userAgent = req.get("User-Agent") || "";
   const isBot =
     /bot|crawl|slurp|facebook|twitter|discord|whatsapp|preview/i.test(
       userAgent
     );
 
+  const url = `https://my-opinion-a8ly.onrender.com/blog/${id}`;
+
   try {
-    const { blogId } = req.params;
     const blog = await prisma.blog.findUnique({
       where: { id: parseInt(blogId) },
     });
@@ -78,12 +80,12 @@ export const getBlog = async (req, res, next) => {
       <meta property="og:title" content="${blog.title}" />
       <meta property="og:description" content="${blog.content.slice(0, 150)}..." />
       <meta property="og:image" content="${blog.profileImage}" />
-      <meta property="og:url" content="https://yourdomain.com/blog/${blogId}" />
+      <meta property="og:url" content="${url}" />
       
         {/* twittr */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="${window.location.href}" />
-        <meta property="twitter:site" content="${window.location.href}" />
+        <meta property="twitter:url" content="${url}" />
+        <meta property="twitter:site" content="${url}" />
         <meta property="twitter:title" content="${blog.title}" />
         <meta property="twitter:description" content="${blog.content.slice(0, 150)}..." />
         <meta property="twitter:image" content="${blog.profileImage}" />
@@ -92,12 +94,12 @@ export const getBlog = async (req, res, next) => {
     </head>
     <body>
       <p>Redirecting...</p>
-      <script>window.location.href = "${window.location.origin}/api/v1/blog/${blogId}";</script>
+      <script>window.location.href = "https://my-opinion-a8ly.onrender.com/blog/${blogId}";</script>
     </body>
     </html>
   `;
 
-    if (isBot) {
+    if (!isBot) {
       return res.status(OK).send(html);
     }
 
