@@ -19,6 +19,7 @@ const App = () => {
     <>
       <HelmetProvider>
         <ScrollToTop />
+        
         <Routes>
           <Route element={<PageLayout />}>
             <Route path="/" element={<Landing />} />

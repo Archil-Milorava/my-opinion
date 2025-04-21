@@ -49,6 +49,12 @@ export const getBlogs = async (req, res, next) => {
 };
 
 export const getBlog = async (req, res, next) => {
+  const userAgent = req.get("User-Agent") || "";
+  const isBot =
+    /bot|crawl|slurp|facebook|twitter|discord|whatsapp|preview/i.test(
+      userAgent
+    );
+
   try {
     const { blogId } = req.params;
     const blog = await prisma.blog.findUnique({
@@ -62,9 +68,34 @@ export const getBlog = async (req, res, next) => {
       });
     }
 
+    const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>${blog.title}</title>
+      <meta property="og:title" content="${blog.title}" />
+      <meta property="og:description" content="${blog.content.slice(0, 150)}..." />
+      <meta property="og:image" content="https://yourdomain.com/path-to-blog-image.jpg" />
+      <meta property="og:url" content="https://yourdomain.com/blog/${blogId}" />
+      <meta name="twitter:card" content="summary_large_image" />
+    </head>
+    <body>
+      <p>Redirecting...</p>
+      <script>window.location.href = "/blog/${blogId}";</script>
+    </body>
+    </html>
+  `;
+
+    if (isBot) {
+      return res.status(OK).send(html);
+    }
+
     res.status(OK).json({
       success: true,
       blog,
+      html
     });
   } catch (error) {
     next(error);
@@ -95,5 +126,3 @@ export const deleteBlog = async (req, res, next) => {
     next(error);
   }
 };
-
-
