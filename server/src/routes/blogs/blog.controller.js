@@ -77,13 +77,22 @@ export const getBlog = async (req, res, next) => {
       <title>${blog.title}</title>
       <meta property="og:title" content="${blog.title}" />
       <meta property="og:description" content="${blog.content.slice(0, 150)}..." />
-      <meta property="og:image" content="https://yourdomain.com/path-to-blog-image.jpg" />
+      <meta property="og:image" content="${blog.profileImage}" />
       <meta property="og:url" content="https://yourdomain.com/blog/${blogId}" />
-      <meta name="twitter:card" content="summary_large_image" />
+      
+        {/* twittr */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="${window.location.href}" />
+        <meta property="twitter:site" content="${window.location.href}" />
+        <meta property="twitter:title" content="${blog.title}" />
+        <meta property="twitter:description" content="${blog.content.slice(0, 150)}..." />
+        <meta property="twitter:image" content="${blog.profileImage}" />
+
+
     </head>
     <body>
       <p>Redirecting...</p>
-      <script>window.location.href = "/blog/${blogId}";</script>
+      <script>window.location.href = "${window.location.origin}/api/v1/blog/${blogId}";</script>
     </body>
     </html>
   `;
@@ -95,7 +104,6 @@ export const getBlog = async (req, res, next) => {
     res.status(OK).json({
       success: true,
       blog,
-      html
     });
   } catch (error) {
     next(error);
