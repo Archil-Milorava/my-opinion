@@ -19,7 +19,7 @@ const BlogPage = () => {
     return <ErrorPage errorMessage={error?.message || "Blog not found"} />;
   }
 
-  const { title, content, createdAt, profileImage, id: blogId } = blog || {};
+  const { title, content, createdAt, profileImage } = blog || {};
 
   return (
     <>
