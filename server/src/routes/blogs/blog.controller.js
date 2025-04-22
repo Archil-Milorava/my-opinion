@@ -48,29 +48,29 @@ export const getBlogs = async (req, res, next) => {
   }
 };
 
-// export const getBlog = async (req, res, next) => {
-//   const { blogId } = req.params;
+export const getBlog = async (req, res, next) => {
+  const { blogId } = req.params;
 
-//   try {
-//     const blog = await prisma.blog.findUnique({
-//       where: { id: parseInt(blogId) },
-//     });
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: { id: parseInt(blogId) },
+    });
 
-//     if (!blog) {
-//       return res.status(NOT_FOUND).json({
-//         success: false,
-//         message: "Blog not Found",
-//       });
-//     }
+    if (!blog) {
+      return res.status(NOT_FOUND).json({
+        success: false,
+        message: "Blog not Found",
+      });
+    }
 
-//     res.status(OK).json({
-//       success: true,
-//       blog,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    res.status(OK).json({
+      success: true,
+      blog,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const deleteBlog = async (req, res, next) => {
   try {
@@ -91,81 +91,6 @@ export const deleteBlog = async (req, res, next) => {
     res.status(OK).json({
       success: true,
       message: "Blog deleted successfully",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getBlog = async (req, res, next) => {
-  const { blogId } = req.params;
-  const userAgent = req.headers["user-agent"] || "";
-
-  // console.log(req.headers['user-agent'])
-
-  // Function to check if it's a bot
-  const isBot = (ua) => {
-    const botRegex = [
-      /facebookexternalhit/i,
-      /Twitterbot/i,
-      /Pinterest/i,
-      /Slackbot/i,
-      /WhatsApp/i,
-      /TelegramBot/i,
-      /LinkedInBot/i,
-      /Googlebot/i,
-    ];
-    return botRegex.some((regex) => regex.test(ua));
-  };
-
-  try {
-    const blog = await prisma.blog.findUnique({
-      where: { id: parseInt(blogId) },
-    });
-
-    if (!blog) {
-      return res.status(404).json({
-        success: false,
-        message: "Blog not Found",
-      });
-    }
-
-    if (isBot(userAgent)) {
-      const blogUrl = `https://my-opinion-a8ly.onrender.com/blog/${blogId}`;
-      const html = `
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>${blog.title}</title>
-
-            <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="${blogUrl}" />
-            <meta property="twitter:site" content="${blogUrl}" />
-            <meta property="twitter:title" content="${blog.title}" />
-            <meta property="twitter:description" content="${blog.content.substring(0, 100)}" />
-            <meta property="twitter:image" content="${blog.profileImage}" />
-
-            <meta name="description" content="${blog.content.substring(0, 100)}" />
-            <meta property="og:title" content="${blog.title}" />
-            <meta property="og:description" content="${blog.content.substring(0, 100)}" />
-            <meta property="og:image" content="${blog.profileImage}" />
-            <meta property="og:url" content="${blogUrl}" />
-            <meta property="og:type" content="article" />
-          </head>
-          <body>
-            <p>Previewing blog for bots</p>
-          </body>
-        </html>
-      `;
-      return res.send(html);
-    }
-
-    // Normal JSON response for browsers/React app
-    res.status(200).json({
-      success: true,
-      blog,
     });
   } catch (error) {
     next(error);
