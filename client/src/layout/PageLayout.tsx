@@ -7,8 +7,8 @@ const PageLayout = () => {
   return (
     <main className="w-full h-auto min-h-screen flex flex-col  ">
       <Header />
-      <div className="w-full h-auto flex-1 flex flex-col sm:flex-row">
-        <Categories />
+      <div className="w-full h-auto flex-1 flex flex-col md:flex-row">
+        {/* <Categories /> */}
         <Outlet />
       </div>
       <Footer />

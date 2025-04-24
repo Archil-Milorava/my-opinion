@@ -5,9 +5,9 @@ const Header = () => {
   return (
     <header
       onClick={() => navigate("/")}
-      className="bg-yellow-300 w-full h-14 sm:h-32 transition-all flex items-center justify-center cursor-pointer"
+      className=" w-full h-14 sm:h-32 transition-all flex items-center justify-center cursor-pointer bg-primary text-secondary "
     >
-      <h1 className="font-bold tracking-wider uppercase text-xl sm:text-9xl ">
+      <h1 className="font-bold tracking-wider uppercase text-4xl sm:text-9xl ">
         Myopinion
       </h1>
     </header>

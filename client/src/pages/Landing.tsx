@@ -9,7 +9,7 @@ const Landing = () => {
   }
 
   return (
-    <section className="w-full flex-1 flex flex-col items-center justify-center gap-4 py-4 bg-gray-800">
+    <section className="w-full flex-1 flex flex-col items-center justify-center gap-4 py-4 bg-primary">
       {error && <div>error</div>}
       {blogs?.map((blog) => (
         <BlogCard key={blog.id} {...blog} />

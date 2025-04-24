@@ -4,13 +4,11 @@ import { useSingleBlog } from "@/hooks/blogHook";
 import { useParams } from "react-router-dom";
 import ErrorPage from "./Error";
 import { Helmet } from "react-helmet-async";
+import { formatDate } from "@/utils/helpers";
 
 const BlogPage = () => {
   const { id } = useParams();
   const { blog, isLoading, error } = useSingleBlog(id!);
-
-  console.log(blog);
-  
 
   if (isLoading) {
     return <Spinner />;
@@ -26,8 +24,7 @@ const BlogPage = () => {
     <>
       <Helmet>
         <title>{title}</title>
-      <meta name="description" content="my name is achi" />
-
+        <meta name="description" content="my name is achi" />
       </Helmet>
 
       <section className="w-full flex-1 flex flex-col gap-4 bg-gray-800 text-white py-8  px-4 md:px-[10rem]">
@@ -39,7 +36,7 @@ const BlogPage = () => {
             </div>
             <div>
               <p className="font-medium">archil milorava</p>
-              <p className="text-gray-400 text-sm">{createdAt}</p>
+              <p className="text-gray-400 text-sm">{formatDate(createdAt)}</p>
             </div>
           </div>
         </div>
@@ -49,12 +46,10 @@ const BlogPage = () => {
         <div>
           <p className="sm:text-2xl/relaxed text-xl/relaxed">{content}</p>
         </div>
-        <BlogShare title={title}  />
+        <BlogShare title={title} />
       </section>
     </>
   );
 };
 
 export default BlogPage;
-
-

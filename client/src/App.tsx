@@ -17,9 +17,9 @@ const Bla = () => {
 const App = () => {
   return (
     <>
-    <Helmet>
-      <title>archil m</title>
-    </Helmet>
+      <Helmet>
+        <title>My Opinion - Archil Milorava</title>
+      </Helmet>
       <ScrollToTop />
       <Routes>
         <Route element={<PageLayout />}>
