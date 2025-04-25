@@ -98,31 +98,28 @@ export const deleteBlog = async (req, res, next) => {
 };
 
 export const getPagesBlog = async (req, res, next) => {
-  const page = req.query.page || 1;
+  const currentPage = req.query.page || 1;
 
   try {
-    const skipItems = (page - 1) * 5;
-
-    const blogs = await prisma.blog.findMany({
-      skip: skipItems,
-      take: 5,
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-
-    if (!blogs) {
-      throw new appError("no blogs found", BAD_REQUEST);
-    }
+    const [blogs, totalBlogsCount] = await Promise.all([
+      prisma.blog.findMany({
+        skip: (currentPage - 1) * 5,
+        take: 5,
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.blog.count(),
+    ]);
 
     if (blogs.length === 0) {
-      throw new appError("No blogs found on this page", BAD_REQUEST);
+      throw new Error("blogs not found on this page", BAD_REQUEST);
     }
 
+    const totalPages = Math.ceil(totalBlogsCount / 5);
+
     res.status(OK).json({
-      page,
-      count: blogs.length,
       blogs,
+      totalBlogsCount,
+      totalPages,
     });
   } catch (error) {
     next(error);

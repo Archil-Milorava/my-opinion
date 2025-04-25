@@ -1,4 +1,4 @@
-import { getBlogs, getSingleBlog } from "@/services/apiBlog";
+import { getBlogs, getPaginatedBlogs, getSingleBlog } from "@/services/apiBlog";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetBlogs = () => {
@@ -23,4 +23,18 @@ export const useSingleBlog = (id: string) => {
   const blog = data?.blog;
 
   return { blog, ...rest };
+};
+
+export const usePaginatedBlogs = (currentPage: number) => {
+  const { data, ...rest } = useQuery({
+    queryKey: ["paginatedBlog", currentPage],
+    queryFn: () => getPaginatedBlogs(currentPage),
+    staleTime: Infinity,
+  });
+
+  const blogs = data?.blogs;
+  const totalPages = data?.totalPages;
+  const totalBlogsCount = data?.totalBlogsCount;
+
+  return { data, blogs, totalPages, totalBlogsCount, ...rest };
 };

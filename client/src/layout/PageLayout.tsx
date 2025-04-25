@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
-import Categories from "./Categories";
+import PaginationMain from "./PaginationMain";
 
 const PageLayout = () => {
   return (
@@ -10,7 +10,9 @@ const PageLayout = () => {
       <div className="w-full h-auto flex-1 flex flex-col md:flex-row">
         {/* <Categories /> */}
         <Outlet />
+        
       </div>
+      
       <Footer />
     </main>
   );
