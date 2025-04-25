@@ -14,10 +14,10 @@ const Landing = () => {
     return <Spinner />;
   }
 
-  if (isError) {
+  if (isError || !totalPages) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        {error.message}
+        {error?.message || "something wentwrong"}
       </div>
     );
   }
@@ -28,7 +28,7 @@ const Landing = () => {
         <BlogCard key={blog.id} {...blog} />
       ))}
       <div>
-        <PaginationMain totalPages={totalPages || 1} />
+        <PaginationMain totalPages={totalPages} />
       </div>
     </section>
   );

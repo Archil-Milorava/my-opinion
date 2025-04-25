@@ -10,7 +10,7 @@ const AppContainer = () => {
   }
 
   return currentUser ? (
-    <div>
+    <div className=" w-full min-h-screen">
       <Outlet />
     </div>
   ) : (
