@@ -1,1 +1,1 @@
-# Hello, this is my personal blog page
+Hello and welcome to my personal blog
